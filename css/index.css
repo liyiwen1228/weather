@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2018-03-24 08:14:25
 * @Last Modified by:   Administrator
-* @Last Modified time: 2018-09-27 22:28:26
+* @Last Modified time: 2018-09-29 14:22:48
 */
 *{
 	margin: 0;
@@ -244,7 +244,28 @@ i{
 	width: 100%;
 	color: #434343;
 }
+.recent .scroll1 #main{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0.4rem;
+	margin: auto;
+	width: 1400px;
+	height: 0.8rem;
+	background: rgba(0, 0, 0, 0);
+	z-index: 999;
+}
+/* .recent .scroll1 #main>div{
+	width: 1400px !important;
+	
+}
+.recent .scroll1 #main canvas{
+	width: 1400px !important;
+	
+} */
 .recent{
+	
 	width:100%;
 	height: 3.91rem;
 	/* background: red; */
@@ -261,6 +282,7 @@ i{
 	height: 0;
 }
 .recent .scroll1{
+	position: relative;
 	/* width: 10rem; */
 	height: 3.37rem;
 	/* background: pink; */
@@ -312,8 +334,10 @@ i{
 	font-size: 0.14rem;
 	text-align: center;
 	color: #b2b2b2;
+	/* margin-bottom: 2rem; */
 }
 .low{
+	
 	width: 100%;
 	height: 0.2rem;
 	font-size: 0.14rem;
@@ -321,6 +345,7 @@ i{
 	color: #b2b2b2;
 }
 .week_weaL{
+	margin-top: 0.6rem;
 	width: 100%;
 	height: 0.2rem;
 	font-size: 0.14rem;
@@ -430,7 +455,7 @@ i{
 #location{
 	display: none;
 	width: 100%;
-	height: 100%;
+	height: auto;
 	background: #fff;
 	position: absolute;
 	top: 0;

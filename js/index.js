@@ -23,7 +23,9 @@
 	});
 
 	function update(weather){
-		$(".recent .scroll1").html("");
+		let higtweather=[];
+		let lowweather=[];
+		$(".recent .scroll1").html("<div id='main'></div>");
 		$(".hours .scroll").html("");
 		$("#city").html(weather.city_name);
 		$(".kong>h3").html(weather.quality_level);
@@ -53,6 +55,8 @@
 		});
 		// console.log(weather.forecast_list);
 		$(weather.forecast_list).each(function(i,v){
+			higtweather.push(v.high_temperature);
+			lowweather.push(v.low_temperature);
 			let str=`
 				<div class="week">
 					<div class="week_date">
@@ -62,16 +66,70 @@
 					</div>
 					<div class="week_weaH">${v.condition.split('转')[0]}</div>
 					<div class="week_imgH"></div>
-					<div class="high">${v.high_temperature}°</div>
-					<div class="low">${v.low_temperature}°</div>
+					
 					<div class="week_weaL">${v.condition.includes("转")?v.condition.split('转')[1]:v.condition}</div>
 					<div class="week_imgL"></div>
 					<div class="win">${v.wind_direction}</div>
 					<div class="level">${v.wind_level}级</div>
 				</div>
 			`;
+			// <div class="high">${v.high_temperature}°</div>
+			// 		<div class="low">${v.low_temperature}°</div>
 			$(".recent .scroll1").append(str);
 		});
+		// 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            // title: {
+            //     text: 'ECharts 入门示例'
+            // },
+            // tooltip: {},
+            // legend: {
+            //     data:['销量']
+            // },
+            xAxis: {
+            	show:false,
+            	 boundaryGap: false,
+                data : ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']
+            },
+            yAxis: 
+        	{
+	            type : 'value',
+	            show:false,
+	            axisLabel: {
+		            formatter: '{value} °C'
+		        }
+        	},
+    		
+    		  grid: {
+		        left:"0",   
+		        top: '20%',
+		        bottom: '-10%',
+		        containLabel: true
+		    },
+            series: [
+            {
+	                name: '最高气温',
+	                type: 'line',
+	                smooth: 0.5,
+	                itemStyle:{normal:{label:{show:true},lineStyle:{color:"#ffb74d"}}},
+	                data: higtweather
+            	},
+            	{
+	                name: '最低气温',
+	                type: 'line',
+	                smooth: 0.5,
+	   				itemStyle:{normal:{label:{show:true,position:"bottom"},lineStyle:{color:"#4ec3e7"}}},
+	                data: lowweather
+            	}
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+		
 	}
 	function forCity(city){
 		let k=0;
